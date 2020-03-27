@@ -1,0 +1,25 @@
+.sliderbar {
+    background-color: #397afa;
+}
+
+.sliderbar:hover {
+    background-color: #91b6ff;
+}
+
+.initial {
+    border: none;
+    background-color: #91b6ff;
+}
+.wronglyOrdered {
+    border: none;
+    background-color: #f75959;
+}
+.inComparison {
+    border: none;
+    background-color: #fff563;
+}
+
+.sorted {
+    border: none;
+    background-color: #d7fc03;
+}
