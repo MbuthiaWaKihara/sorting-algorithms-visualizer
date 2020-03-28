@@ -11,7 +11,7 @@
 <p>This project puts a lot of focus in being beginner friendly, it hopes to achieve a scenario where a student or programming professional
 understands sorting algorithms by closely following visual illustrations of the algorithms at work</p>
 <p>Along with some interfaces for choosing the sorting algorithms and order, the app comes with a brief guide that explains how
-the application uses colors and patterns to visualize sorting. This guide is in the abouts page, navigate to the page using the side nav</p>
+the application uses colors and patterns to visualize sorting. This guide is in the notes page, navigate to the page using the side nav</p>
 
 # How to set up the project
 <p>Ensure you have a stable version of Node.js installed</p>
