@@ -1,5 +1,5 @@
 export const containerStyles = {
-    height: '49.3rem',
+   height: '100%',
     backgroundColor: '#f5f5f5',
 }
 
