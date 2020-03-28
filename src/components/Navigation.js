@@ -18,7 +18,7 @@ const Navigation = ({response, isAnimating}) => {
                 <Sidenav.Body>
                     <Nav>
                     <Nav.Item eventKey="1" disabled={isAnimating}>
-                        Sort!
+                        Sort !
                     </Nav.Item>
                     <Nav.Item eventKey="2" disabled={isAnimating}>
                         Refresh
