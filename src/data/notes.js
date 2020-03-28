@@ -145,7 +145,7 @@ export const notes = (
     If you did that, for selection sort, ascending, you would see that each element first turns orange, showing that the selection algorithm is checking whether the element is indeed the largest.
     Of course at first, the largest element is the first element to be considered, but after that, for an element to be the largest, it has to be larger than the previous largest.
     When the animation choses an element as the largest, it turns the horizontal bar red, showing that this element might need to be swapped, and then continues considering the other members.
-    When the animation reaches the last sorted (at the first iteration, sice none of the members is marked as sorted, index of the last sorted is the length of the array), it swaps the member at position - 1, with the member
+    When the animation reaches the last sorted (at the first iteration, since none of the members is marked as sorted, index of the last sorted is the length of the array), it swaps the member at position - 1, with the member
     that was marked as largest. Before the swap, you'll notice that the last unsorted member is also turned red, showing that it will be swapped. After the swap, 
     the previous largest is turned green, showing that it is now sorted. Phew, that was a lot of explanation! All these are better explained visually, try it out now!</p>
     <h2 className="subtopic">{append} Insertion Sort</h2>
