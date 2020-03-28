@@ -30,7 +30,7 @@ the application uses colors and patterns to visualize sorting. This guide is in 
     <li>Open a pull request</li>
 </ol>
 
-# known bugs
+# Known bugs
 <p>The UI messes up in small screens.</p>
 <p>Merge sort may display a bit of animation anomaly, but this does not affect the visualization fundamentally.</p>
 
