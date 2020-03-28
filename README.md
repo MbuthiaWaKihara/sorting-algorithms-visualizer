@@ -1,6 +1,6 @@
 
 
-### Sorting Algorithms Visualizer
+# Sorting Algorithms Visualizer
 ![view during testing](https://github.com/MbuthiaWaKihara/sorting-algorithms-visualizer/blob/master/images/image1.png)
 ![view during testing](https://github.com/MbuthiaWaKihara/sorting-algorithms-visualizer/blob/master/images/image2.png)
 ![view during testing](https://github.com/MbuthiaWaKihara/sorting-algorithms-visualizer/blob/master/images/image3.png)
