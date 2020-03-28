@@ -5,22 +5,22 @@ import {
     Dropdown, 
 } from 'rsuite';
 
-const Navigation = ({response, isAnimating}) => {
+const Navigation = ({response, isAnimating, notesMode}) => {
     return (
         <>
             <div style={{  }}>
                 <Sidenav 
                 defaultOpenKeys={['3', '4']} 
-                activeKey="1" 
+                activeKey="2" 
                 appearance="inverse"
-                onSelect={eventKey => {!isAnimating && response(eventKey)}}
+                onSelect={eventKey => {!isAnimating && !notesMode && response(eventKey)}}
                 >
                 <Sidenav.Body>
                     <Nav>
-                    <Nav.Item eventKey="1" disabled={isAnimating}>
+                    <Nav.Item eventKey="1" disabled={isAnimating || notesMode}>
                         Sort !
                     </Nav.Item>
-                    <Nav.Item eventKey="2" disabled={isAnimating}>
+                    <Nav.Item eventKey="2" disabled={isAnimating || notesMode}>
                         Refresh
                     </Nav.Item>
                     <Dropdown 

@@ -2,9 +2,10 @@ import React from 'react'
 import {
     Slider,
 } from 'rsuite';
+import {notes} from '../data/notes';
 import '../styles/screen.css';
 
-const Screen = ({arrayInfo, animationInfo, isAnimating, sorted}) => {
+const Screen = ({arrayInfo, animationInfo, isAnimating, sorted, notesMode}) => {
 
     let arrayHeight = (100 - ((arrayInfo.currentArray.length - 1 ) * .28)) / arrayInfo.currentArray.length;
     let displayArray = arrayInfo.currentArray.map(
@@ -46,68 +47,84 @@ const Screen = ({arrayInfo, animationInfo, isAnimating, sorted}) => {
             style={{
                 width: '100%',
                 height: '100%',
+                overflow: 'auto',
             }}
             >
-                <div
-                style={{
-                    width: '100%',
-                    height: '10%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                }}
-                >
-                    <div
-                    style={{
-                        width: '50%',
-                        height: '100%',
-                    }}
-                    >
-                        <h4 style={{textAlign: 'center', marginBottom: '5px', color: '#397afa'}}>Array Size</h4>
-                        <Slider
+                {
+                    !notesMode ? 
+                    <>
+                        <div
+                        style={{
+                            width: '100%',
+                            height: '10%',
+                            display: 'flex',
+                            flexDirection: 'row',
+                        }}
+                        >
+                            <div
+                            style={{
+                                width: '50%',
+                                height: '100%',
+                            }}
+                            >
+                                <h4 style={{textAlign: 'center', marginBottom: '5px', color: '#397afa'}}>Array Size</h4>
+                                <Slider
+                                style={{
+                                    width: '90%',
+                                    margin: 'auto',
+                                }}
+                                value={arrayInfo.currentArray.length}
+                                onChange={value => arrayInfo.setCurrentArray(arrayInfo.createNewArray(value))}
+                                min={5}
+                                max={120}
+                                tooltip={false}
+                                barClassName="sliderbar"
+                                disabled={isAnimating || sorted}
+                                />
+                            </div>
+                            <div
+                            style={{
+                                width: '50%',
+                                height: '100%',
+                            }}
+                            >
+                                <h4 style={{textAlign: 'center', marginBottom: '5px', color: '#397afa'}}>Animation Speed</h4>
+                                <Slider
+                                style={{
+                                    width: '90%',
+                                    margin: 'auto',
+                                }}
+                                value={0 - animationInfo.animationMilliseconds}
+                                onChange={value => animationInfo.setAnimationMilliseconds(0 - value)}
+                                min={-400}
+                                max={-10}
+                                tooltip={false}
+                                barClassName="sliderbar"
+                                disabled={isAnimating}
+                                />
+                            </div>
+                        </div>
+                        <div
+                        style={{
+                            width: '98%',
+                            height: '90%',
+                            margin: '0 0 0 auto',
+                        }}
+                        >
+                            {displayArray}
+                        </div>
+                    </> :
+                    <>
+                        <div
                         style={{
                             width: '90%',
                             margin: 'auto',
                         }}
-                        value={arrayInfo.currentArray.length}
-                        onChange={value => arrayInfo.setCurrentArray(arrayInfo.createNewArray(value))}
-                        min={5}
-                        max={120}
-                        tooltip={false}
-                        barClassName="sliderbar"
-                        disabled={isAnimating || sorted}
-                        />
-                    </div>
-                    <div
-                    style={{
-                        width: '50%',
-                        height: '100%',
-                    }}
-                    >
-                        <h4 style={{textAlign: 'center', marginBottom: '5px', color: '#397afa'}}>Animation Speed</h4>
-                        <Slider
-                        style={{
-                            width: '90%',
-                            margin: 'auto',
-                        }}
-                        value={0 - animationInfo.animationMilliseconds}
-                        onChange={value => animationInfo.setAnimationMilliseconds(0 - value)}
-                        min={-400}
-                        max={-10}
-                        tooltip={false}
-                        barClassName="sliderbar"
-                        disabled={isAnimating}
-                        />
-                    </div>
-                </div>
-                <div
-                style={{
-                    width: '98%',
-                    height: '90%',
-                    margin: '0 0 0 auto',
-                }}
-                >
-                    {displayArray}
-                </div>
+                        >
+                            {notes}
+                        </div>
+                    </>
+                }
             </div>
         </>
     );

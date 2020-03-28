@@ -38,7 +38,7 @@ const createNewArray = size => {
     let newArray = [];
     for(let counter = 0; counter < size; counter++){
         newArray[counter] = {
-            number: Math.floor(Math.random() * 200) + 10,
+            number: Math.floor(Math.random() * (201 - 5) + 5),
             indexInArray: counter,
             className: 'initial',
         }
@@ -92,6 +92,8 @@ const App = () => {
     const [frameLength, setFrameLength] = useState(0);
     //state variable to tell the app when an array has already been sorted
     const [sorted, setSorted] = useState(false);
+    //state variable to track whether user is in notes mode or not
+    const [notesMode, setNotesMode] = useState(false);
 
 
     //state dependent callbacks
@@ -166,6 +168,12 @@ const App = () => {
             setTitleMessage(`Visualizing Merge Sort | ${algsInfo.order} `);
         }
 
+        //for activating notes mode
+        if(eventKey === '5'){
+            setNotesMode(true);
+            setTitleMessage(`Notes`);
+        }
+
         //for sorting
         if(eventKey === '1'){
             if(sorted){
@@ -177,6 +185,11 @@ const App = () => {
             setIsAnimating(true);
             sort();
         }
+    }
+    //callback for closing the notes mode
+    const closeNotesMode = () => {
+        setNotesMode(false);
+        setTitleMessage(`Visualizing ${algsInfo.algorithm} | ${algsInfo.order}`)
     }
 
     //side effects
@@ -199,12 +212,15 @@ const App = () => {
             <Navigation
             response={respondToNavClick}
             isAnimating={isAnimating}
+            notesMode={notesMode}
             />
         </Sidebar>
         <Container style={innerContainer}>
             <Header style={headerStyles}>
                 <Title
                 message={titleMessage}
+                notesMode={notesMode}
+                closeNotesMode={closeNotesMode}
                 />
             </Header>
             <Content style={contentStyles}>
@@ -213,6 +229,7 @@ const App = () => {
                 animationInfo={{animationMilliseconds, setAnimationMilliseconds}}
                 isAnimating={isAnimating}
                 sorted={sorted}
+                notesMode={notesMode}
                 />
             </Content>
         </Container >

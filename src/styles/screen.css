@@ -23,3 +23,28 @@
     border: none;
     background-color: #d7fc03;
 }
+
+.title {
+    color: #006aff;
+    text-align: center;
+}
+
+.caption {
+    color: #b0b0b0;
+    font-style: italic;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.content {
+    color: #818182;
+    font-size: large;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.subtopic {
+    color: #006aff;
+    display: flex;
+    flex-direction: row;
+}
