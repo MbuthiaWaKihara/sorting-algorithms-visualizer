@@ -45,6 +45,28 @@ const createNewArray = size => {
     }
     return newArray;
 }
+//callback to randomize alg info:
+const randomizeAlgInfo = () => {
+    //prepare random alg
+    let algNumber = Math.floor(Math.random() * (6 - 1) + 1);
+    let algName;
+    if(algNumber === 1) algName = 'Insertion Sort';
+    if(algNumber === 2) algName = 'Selection Sort';
+    if(algNumber === 3) algName = 'Bubble Sort';
+    if(algNumber === 4) algName = 'Merge Sort';
+    if(algNumber === 5) algName = 'Quick Sort';
+
+    //prepare random order
+    let orderNumber = Math.floor(Math.random() * (3 - 1) + 1);
+    let orderName;
+    if(orderNumber === 1) orderName = 'Ascending';
+    if(orderNumber === 2) orderName ='Descending';
+
+    return ({
+        algorithm: algName,
+        order: orderName,
+    });
+}
 
 
 const App = () => {
@@ -53,24 +75,23 @@ const App = () => {
     let animationInterval = useRef();
     //ref variable to hold the position of the animating frame in the frames array
     let animationPosition = useRef(0);
-
+    
 
     //state variables
     //state variable to track whether an animation is running
     const [isAnimating, setIsAnimating] = useState(false);
     //state variable that holds the current array being displayed
-    const [currentArray, setCurrentArray] = useState(() => createNewArray(20));
+    const [currentArray, setCurrentArray] = useState(() => createNewArray(Math.floor(Math.random() * (120 - 5) + 5)));
     //state variable that tracks how many milliseconds animation should take
     const [animationMilliseconds, setAnimationMilliseconds] = useState(100);
     //state variable that holds the information that an alg needs to sort correctly
-    const [algsInfo, setAlgsInfo] = useState({
-        algorithm: 'Insertion Sort',
-        order: 'Ascending',
-    })
+    const [algsInfo, setAlgsInfo] = useState(randomizeAlgInfo);
     //state variable to store the title message
-    const [titleMessage, setTitleMessage] = useState(`Visualizing Insertion Sort | Ascending`);
+    const [titleMessage, setTitleMessage] = useState(`Visualizing ${algsInfo.algorithm} | ${algsInfo.order}`);
     //state variable that stores the length of the frames array
     const [frameLength, setFrameLength] = useState(0);
+    //state variable to tell the app when an array has already been sorted
+    const [sorted, setSorted] = useState(false);
 
 
     //state dependent callbacks
@@ -83,6 +104,7 @@ const App = () => {
         if(algsInfo.algorithm === 'Bubble Sort') frames = bubbleSort(descending, JSON.parse(JSON.stringify(currentArray)));
         if(algsInfo.algorithm === 'Quick Sort') frames = quickSort(descending, JSON.parse(JSON.stringify(currentArray)), 0, currentArray.length - 1);
         if(algsInfo.algorithm === 'Merge Sort') frames = mergeSort(descending, JSON.parse(JSON.stringify(currentArray)), currentArray.length);
+        
 
         let sortedArray = frames[frames.length - 1];
         for(let counter = 0; counter < sortedArray.length; counter++){
@@ -93,7 +115,10 @@ const App = () => {
         setFrameLength(frames.length);
         animationInterval.current = setInterval(() => {
             // console.log("animation position: ", position.current);
-            setCurrentArray(frames[animationPosition.current]);
+            setCurrentArray(previousArray => {
+                //if(JSON.parse(JSON.stringify(previousArray)) === JSON.parse(JSON.stringify(allFrames.current[animationPosition.current]))) return previousArray;
+                return frames[animationPosition.current];
+            });
             animationPosition.current += 1;
         }, animationMilliseconds);
     }
@@ -101,7 +126,9 @@ const App = () => {
     const respondToNavClick = eventKey => {
 
         //for generating new array
-        if(eventKey === '2') setCurrentArray(createNewArray(currentArray.length));
+        if(eventKey === '2') {
+            window.location.reload();
+        }
         //for making order ascending
         if(eventKey === '3-1'){
             setAlgsInfo(previousInfo => {return{...previousInfo, order: 'Ascending'}});
@@ -141,7 +168,12 @@ const App = () => {
 
         //for sorting
         if(eventKey === '1'){
-            Alert.info(`Alright let's do this!`, 1000);
+            if(sorted){
+                Alert.info(`Hmmm. Looks like this array is already sorted. Try refreshing to visualize again...`, 5000);
+                return;
+            }
+
+            Alert.info(`Alright let's do this!`, 2000);
             setIsAnimating(true);
             sort();
         }
@@ -151,13 +183,14 @@ const App = () => {
     //side effect that tracks when an animation is done
     useEffect(() => {  
         if(isAnimating && animationPosition.current === frameLength){
-            console.log("current array:", currentArray);
+            // console.log("current array:", currentArray);
             clearInterval(animationInterval.current);
             setFrameLength(0);
             setIsAnimating(false);
+            setSorted(true);
             Alert.success(`That's ${algsInfo.algorithm} for you!`, 2000);
         }
-    }, [animationPosition.current, frameLength,]);
+    }, [animationPosition.current]);
 
     return (
         <>
@@ -179,6 +212,7 @@ const App = () => {
                 arrayInfo={{currentArray, setCurrentArray, createNewArray}}
                 animationInfo={{animationMilliseconds, setAnimationMilliseconds}}
                 isAnimating={isAnimating}
+                sorted={sorted}
                 />
             </Content>
         </Container >

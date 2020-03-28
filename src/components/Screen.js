@@ -4,7 +4,7 @@ import {
 } from 'rsuite';
 import '../styles/screen.css';
 
-const Screen = ({arrayInfo, animationInfo, isAnimating}) => {
+const Screen = ({arrayInfo, animationInfo, isAnimating, sorted}) => {
 
     let arrayHeight = (100 - ((arrayInfo.currentArray.length - 1 ) * .28)) / arrayInfo.currentArray.length;
     let displayArray = arrayInfo.currentArray.map(
@@ -74,7 +74,7 @@ const Screen = ({arrayInfo, animationInfo, isAnimating}) => {
                         max={120}
                         tooltip={false}
                         barClassName="sliderbar"
-                        disabled={isAnimating}
+                        disabled={isAnimating || sorted}
                         />
                     </div>
                     <div
