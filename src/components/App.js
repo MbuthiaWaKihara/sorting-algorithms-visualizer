@@ -203,7 +203,7 @@ const App = () => {
             setSorted(true);
             Alert.success(`That's ${algsInfo.algorithm} for you!`, 2000);
         }
-    }, [animationPosition.current]);
+    });
 
     return (
         <>
