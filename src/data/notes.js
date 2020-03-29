@@ -54,13 +54,13 @@ const append = (
 
 const data = [{
     visual: `A blue horizontal bar, sometimes with a number at the furthest right`,
-    actual: `This represents a single element in the array. The width of the bar relative to the screen can give you an idea of the value it represents. When the array length is small enough, the value the array member represents is actually shown as a number on the furthest right. An element can have a minimum value of 10, and a maximum value of 200`,
+    actual: `This represents a single element in the array. The width of the bar relative to the screen can give you an idea of the value it represents. When the array length is small enough, the value the array member represents is actually shown as a number on the furthest right. An element can have a minimum value of 5, and a maximum value of 200`,
 },{
     visual: `An orange horizontal bar`, 
     actual: `Sometimes the blue bars turn orange during animation. This generally represents the point where the algorithm is currently considering or comparing. When the bar is orange, it means the algorithm is currently considering that element in the array.`,
 },{
     visual: `A red horizontal bar`, 
-    actual: `Sometimes the bar turns red during animation. This generally represents an element that is wrongly placed in the array. When the bar turns red, it means that the algorithm thinks that that element is not correctly placed and may change it's position in the array. When the bar turns red, you are likely to see it's position change immediately, or shortly after it turns.`,
+    actual: `Sometimes the bar turns red during animation. This generally represents an element that is wrongly placed in the array. When the bar turns red, it means that the algorithm thinks that that element is not correctly placed and may change its position in the array. When the bar turns red, you are likely to see its position change immediately, or shortly after it turns.`,
 },{
     visual: `A green horizontal bar`, 
     actual: `Sometimes the bar turns green during animation. This generally represents an element that is correctly placed in the sorted array. When the bar turns green, it means that the algorithm is satisfied that that is the final position of that element in the sorted array.`,
