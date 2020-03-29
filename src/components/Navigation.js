@@ -2,10 +2,11 @@ import React from 'react';
 import {
     Sidenav,
     Nav, 
-    Dropdown, 
+    Dropdown,
+    Loader,
 } from 'rsuite';
 
-const Navigation = ({response, isAnimating, notesMode}) => {
+const Navigation = ({response, isAnimating, notesMode, animationMilliseconds}) => {
     return (
         <>
             <div style={{  }}>
@@ -18,7 +19,7 @@ const Navigation = ({response, isAnimating, notesMode}) => {
                 <Sidenav.Body>
                     <Nav>
                     <Nav.Item eventKey="1" disabled={isAnimating || notesMode}>
-                        Sort !
+                       {isAnimating ? <Loader inverse={true} content="Sorting..." speed={animationMilliseconds >= 200? `slow`: `fast`} size="md"/> : 'Sort !'}
                     </Nav.Item>
                     <Nav.Item eventKey="2" disabled={isAnimating || notesMode}>
                         Refresh

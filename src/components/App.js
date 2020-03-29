@@ -119,7 +119,7 @@ const App = () => {
             // console.log("animation position: ", position.current);
             setCurrentArray(previousArray => {
                 //if(JSON.parse(JSON.stringify(previousArray)) === JSON.parse(JSON.stringify(allFrames.current[animationPosition.current]))) return previousArray;
-                return frames[animationPosition.current];
+                return frames[animationPosition.current];  
             });
             animationPosition.current += 1;
         }, animationMilliseconds);
@@ -213,6 +213,7 @@ const App = () => {
             response={respondToNavClick}
             isAnimating={isAnimating}
             notesMode={notesMode}
+            animationMilliseconds={animationMilliseconds}
             />
         </Sidebar>
         <Container style={innerContainer}>
