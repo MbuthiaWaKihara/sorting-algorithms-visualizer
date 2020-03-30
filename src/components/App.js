@@ -90,10 +90,10 @@ const App = () => {
     const [titleMessage, setTitleMessage] = useState(`Visualizing ${algsInfo.algorithm} | ${algsInfo.order}`);
     //state variable that stores the length of the frames array
     const [frameLength, setFrameLength] = useState(0);
-    //state variable to tell the app when an array has already been sorted
-    const [sorted, setSorted] = useState(false);
     //state variable to track whether user is in notes mode or not
     const [notesMode, setNotesMode] = useState(false);
+    //state variable to hold all frames
+    const [animationFrames, setAnimationFrames] = useState([]);
 
 
     //state dependent callbacks
@@ -114,22 +114,16 @@ const App = () => {
         }
         frames.push(JSON.parse(JSON.stringify(sortedArray)));
 
+        setAnimationFrames(frames);
         setFrameLength(frames.length);
-        animationInterval.current = setInterval(() => {
-            // console.log("animation position: ", position.current);
-            setCurrentArray(previousArray => {
-                //if(JSON.parse(JSON.stringify(previousArray)) === JSON.parse(JSON.stringify(allFrames.current[animationPosition.current]))) return previousArray;
-                return frames[animationPosition.current];  
-            });
-            animationPosition.current += 1;
-        }, animationMilliseconds);
     }
+
     //callback to respond to user click on side nav
     const respondToNavClick = eventKey => {
 
         //for generating new array
         if(eventKey === '2') {
-            window.location.reload();
+            setCurrentArray(createNewArray(currentArray.length));
         }
         //for making order ascending
         if(eventKey === '3-1'){
@@ -176,10 +170,6 @@ const App = () => {
 
         //for sorting
         if(eventKey === '1'){
-            if(sorted){
-                Alert.info(`Hmmm. Looks like this array is already sorted. Try refreshing to visualize again...`, 5000);
-                return;
-            }
 
             Alert.info(`Alright let's do this!`, 2000);
             setIsAnimating(true);
@@ -192,19 +182,33 @@ const App = () => {
         setTitleMessage(`Visualizing ${algsInfo.algorithm} | ${algsInfo.order}`)
     }
 
-    //side effects
+    //side effects:
+    //effect that runs the animation
+    useEffect(() => {
+        if(animationFrames.length > 0){
+            animationInterval.current = setInterval(() => {
+                // console.log("animation position: ", position.current);
+                setCurrentArray(previousArray => { 
+                    return animationFrames[animationPosition.current];  
+                });
+                animationPosition.current += 1;
+            }, animationMilliseconds);
+        }
+    },[animationFrames]);
     //side effect that tracks when an animation is done
     useEffect(() => {  
         if(isAnimating && animationPosition.current === frameLength){
             // console.log("current array:", currentArray);
+            animationPosition.current = 0;
             clearInterval(animationInterval.current);
             setFrameLength(0);
             setIsAnimating(false);
-            setSorted(true);
+            // setSorted(true);
+            setAnimationFrames([]);
+            // setAnimationPosition(0);
             Alert.success(`That's ${algsInfo.algorithm} for you!`, 2000);
         }
     });
-
     return (
         <>
         <Container style={containerStyles}>
@@ -229,7 +233,6 @@ const App = () => {
                 arrayInfo={{currentArray, setCurrentArray, createNewArray}}
                 animationInfo={{animationMilliseconds, setAnimationMilliseconds}}
                 isAnimating={isAnimating}
-                sorted={sorted}
                 notesMode={notesMode}
                 />
             </Content>

@@ -22,7 +22,7 @@ const Navigation = ({response, isAnimating, notesMode, animationMilliseconds}) =
                        {isAnimating ? <Loader inverse={true} content="Sorting..." speed={animationMilliseconds >= 200? `slow`: `fast`} size="md"/> : 'Sort !'}
                     </Nav.Item>
                     <Nav.Item eventKey="2" disabled={isAnimating || notesMode}>
-                        Refresh
+                        Generate New Array
                     </Nav.Item>
                     <Dropdown 
                         eventKey="3" 

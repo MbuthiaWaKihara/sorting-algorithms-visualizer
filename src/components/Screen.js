@@ -5,7 +5,7 @@ import {
 import {notes} from '../data/notes';
 import '../styles/screen.css';
 
-const Screen = ({arrayInfo, animationInfo, isAnimating, sorted, notesMode}) => {
+const Screen = ({arrayInfo, animationInfo, isAnimating, notesMode}) => {
 
     let arrayHeight = (100 - ((arrayInfo.currentArray.length - 1 ) * .28)) / arrayInfo.currentArray.length;
     let displayArray = arrayInfo.currentArray.map(
@@ -79,7 +79,7 @@ const Screen = ({arrayInfo, animationInfo, isAnimating, sorted, notesMode}) => {
                                 max={120}
                                 tooltip={false}
                                 barClassName="sliderbar"
-                                disabled={isAnimating || sorted}
+                                disabled={isAnimating}
                                 />
                             </div>
                             <div
