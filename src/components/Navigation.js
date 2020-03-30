@@ -19,10 +19,10 @@ const Navigation = ({response, isAnimating, notesMode, animationMilliseconds}) =
                 <Sidenav.Body>
                     <Nav>
                     <Nav.Item eventKey="1" disabled={isAnimating || notesMode}>
-                       {isAnimating ? <Loader inverse={true} content="Sorting..." speed={animationMilliseconds >= 200? `slow`: `fast`} size="md"/> : 'Sort !'}
+                       {isAnimating ? <Loader inverse={true} content="Sorting..." speed={animationMilliseconds >= 200? `slow`: `fast`} size="md"/> : 'Sort'}
                     </Nav.Item>
                     <Nav.Item eventKey="2" disabled={isAnimating || notesMode}>
-                        Generate New Array
+                        New Array
                     </Nav.Item>
                     <Dropdown 
                         eventKey="3" 
