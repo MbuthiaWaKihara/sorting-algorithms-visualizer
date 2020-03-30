@@ -14,13 +14,24 @@ const Navigation = ({response, isAnimating, notesMode, animationMilliseconds}) =
                 defaultOpenKeys={['3', '4']} 
                 activeKey="2" 
                 appearance="inverse"
-                onSelect={eventKey => {!isAnimating && !notesMode && response(eventKey)}}
+                onSelect={eventKey => {
+                    if(eventKey === '6') {
+                        response(eventKey);
+                    }else{
+                        !isAnimating && !notesMode && response(eventKey)
+                    }   
+                }}
                 >
                 <Sidenav.Body>
                     <Nav>
                     <Nav.Item eventKey="1" disabled={isAnimating || notesMode}>
                        {isAnimating ? <Loader inverse={true} content="Sorting..." speed={animationMilliseconds >= 200? `slow`: `fast`} size="md"/> : 'Sort'}
                     </Nav.Item>
+                    {isAnimating &&
+                    <Nav.Item eventKey="6">
+                        Abort
+                    </Nav.Item>
+                    }
                     <Nav.Item eventKey="2" disabled={isAnimating || notesMode}>
                         New Array
                     </Nav.Item>

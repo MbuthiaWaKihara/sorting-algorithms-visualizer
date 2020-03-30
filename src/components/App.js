@@ -168,6 +168,17 @@ const App = () => {
             setTitleMessage(`Notes`);
         }
 
+        //for aborting an ongoing sort notes mode
+        if(eventKey === '6'){
+
+            setIsAnimating(false);
+            animationPosition.current = 0;
+            clearInterval(animationInterval.current);
+            setFrameLength(0);
+            setAnimationFrames([]);
+            Alert.warning(`Stopping ${algsInfo.algorithm} midway`, 2000);
+        }
+
         //for sorting
         if(eventKey === '1'){
 
