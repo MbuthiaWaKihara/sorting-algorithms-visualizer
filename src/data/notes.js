@@ -158,7 +158,7 @@ export const notes = (
     Check insertion sort out now and see the alg in action!</p> 
     <h2 className="subtopic">{append} Bubble Sort</h2>
     <p className="content">Bubble sort is the last algorithm that we'll discuss that uses the comparison strategy. Bubble sort is probably the easiest alg to 
-    uderstand. Its approach usually seems natural for the average mind. The algorithm simply starts from the first member and compares it to the next member. If the next member is smaller, it swaps them. It then goes on to the second member and repeats. Easy huh! The algorithm iterates through
+    understand. Its approach usually seems natural for the average mind. The algorithm simply starts from the first member and compares it to the next member. If the next member is smaller, it swaps them. It then goes on to the second member and repeats. Easy huh! The algorithm iterates through
     the array performing the same process until the array is eventually sorted</p>
     <p className="content">So how does the animation show this? The animation always turns two bars at a time orange. This shows that the algorithm is currently 
     comparing the two members represented by those bars. If the members need to be swapped, the animation will first turn their bars red, swap them, then turn them back blue. Else, the animation just turns them back blue.</p>
