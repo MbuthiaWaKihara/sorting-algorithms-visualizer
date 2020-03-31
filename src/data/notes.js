@@ -66,7 +66,7 @@ const data = [{
     actual: `Sometimes the bar turns green during animation. This generally represents an element that is correctly placed in the sorted array. When the bar turns green, it means that the algorithm is satisfied that that is the final position of that element in the sorted array.`,
 },{
     visual: `A collection of horizontal bars placed vertically across the screen`, 
-    actual: `This represents the array itself. Each horizontal bar represents a member of the array, with its width representing its value. An array can have a maximum length of 200, and a minimum length of 5 (200 max members, 5 min members)`,
+    actual: `This represents the array itself. Each horizontal bar represents a member of the array, with its width representing its value. An array can have a maximum length of 120, and a minimum length of 5 (120 max members, 5 min members)`,
 },{
     visual: `A range input field labeled Array Size`, 
     actual: `This represents an input where you as the user can change the array size. Whenever you change the array size, a new array is generated with elements of randomized values.`,
