@@ -11,6 +11,12 @@ const tipMessage = (
       Exit Notes Mode
     </Tooltip>
   );
+
+const tipMessage2 = (
+    <Tooltip>
+        Link to github repo
+    </Tooltip>
+);
 const Title = ({message, notesMode, closeNotesMode}) => {
     return (
         <>
@@ -53,6 +59,21 @@ const Title = ({message, notesMode, closeNotesMode}) => {
                     fontSize: '2em',
                 }}
                 >{message}</h3>
+                <Whisper trigger="hover" speaker={tipMessage2} placement="left">
+                <a 
+                style={{
+                    width: '5%',
+                }}
+                href="https://github.com/MbuthiaWaKihara/sorting-algorithms-visualizer"
+                >
+                    <Icon
+                    icon="github"
+                    size="3x"
+                    style={{cursor: 'pointer',}}
+                    inverse
+                    />
+                </a>
+                </Whisper>
             </div>
         </>
     );
