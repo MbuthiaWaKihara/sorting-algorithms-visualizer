@@ -181,7 +181,7 @@ export const notes = (
     <p className="content">So how does the animation show this? As the animation splits the array into many two membered arrays and sorts them, the animation will look a lot like bubble sort. 
     It will always highlight the two members of the subarrays orange, and if they need swapping, it will highlight them red, swap them and highlight them back blue. But when the animation now needs to merge the two membered arrays into four membered arrays,
     you will notice that the highlighted bars are now not adjacent to each other, but the sorting process (turning orange, if needs swapping turning red, turning back blue) remains the same. The algorithm repeats this until eventually, it has just two arrays to merge into one sorted array. Run the algorithm and see it do just that!</p>
-    <h4 className="caption">The entirity of the purpose of this web app is to help you relate more closely and more visually to sorting algorithms. Quit memorizing pseudo code, vividly see the algorithm working in your mind!</h4>
+    <h4 className="caption">The entirety of the purpose of this web app is to help you relate more closely and more visually to sorting algorithms. Quit memorizing pseudo code, vividly see the algorithm working in your mind!</h4>
     <h2 className="subtopic">{append} Parting Shot</h2>
     <p className="content">This web app can still be improved vastly. That is why it is provided as an open source project. Anyone willing to improve the app in any way, from UI design, to animation, to adding extra algs, feel free to do so. The web app is written in javascript, under 
     the ReactJS Library. For more info about how exactly to contribute, visit the github page where the repo for the app lives. See you soon!</p>
