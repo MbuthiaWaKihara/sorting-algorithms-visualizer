@@ -94,6 +94,8 @@ const App = () => {
     const [notesMode, setNotesMode] = useState(false);
     //state variable to hold all frames
     const [animationFrames, setAnimationFrames] = useState([]);
+    //state variable that tracks for an animation pause
+    const [pause, setPause] = useState(0);
 
 
     //state dependent callbacks
@@ -116,6 +118,7 @@ const App = () => {
 
         setAnimationFrames(frames);
         setFrameLength(frames.length);
+        setPause(1);
     }
 
     //callback to respond to user click on side nav
@@ -168,17 +171,6 @@ const App = () => {
             setTitleMessage(`Notes`);
         }
 
-        //for aborting an ongoing sort notes mode
-        if(eventKey === '6'){
-
-            setIsAnimating(false);
-            animationPosition.current = 0;
-            clearInterval(animationInterval.current);
-            setFrameLength(0);
-            setAnimationFrames([]);
-            Alert.warning(`Stopping ${algsInfo.algorithm} midway`, 2000);
-        }
-
         //for sorting
         if(eventKey === '1'){
 
@@ -192,11 +184,22 @@ const App = () => {
         setNotesMode(false);
         setTitleMessage(`Visualizing ${algsInfo.algorithm} | ${algsInfo.order}`)
     }
+    //callback to pause an animation
+    const pauseAnimation = () => {
+        clearInterval(animationInterval.current);
+        setIsAnimating(false);
+        setPause(2);
+    }
+    //callback to play animation
+    const playAnimation = () => {
+        setPause(1);
+        setIsAnimating(true);
+    }
 
     //side effects:
     //effect that runs the animation
     useEffect(() => {
-        if(animationFrames.length > 0){
+        if(isAnimating && animationFrames.length > 0 && pause !== 2){
             animationInterval.current = setInterval(() => {
                 // console.log("animation position: ", position.current);
                 setCurrentArray(previousArray => { 
@@ -205,7 +208,7 @@ const App = () => {
                 animationPosition.current += 1;
             }, animationMilliseconds);
         }
-    },[animationFrames]);
+    },[animationFrames, pause]);
     //side effect that tracks when an animation is done
     useEffect(() => {  
         if(isAnimating && animationPosition.current === frameLength){
@@ -217,6 +220,7 @@ const App = () => {
             // setSorted(true);
             setAnimationFrames([]);
             // setAnimationPosition(0);
+            setPause(0);
             Alert.success(`That's ${algsInfo.algorithm} for you!`, 2000);
         }
     });
@@ -245,6 +249,10 @@ const App = () => {
                 animationInfo={{animationMilliseconds, setAnimationMilliseconds}}
                 isAnimating={isAnimating}
                 notesMode={notesMode}
+                isPaused={pause}
+                pause={pauseAnimation}
+                setPause={setPause}
+                play={playAnimation}
                 />
             </Content>
         </Container >

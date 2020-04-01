@@ -1,11 +1,23 @@
 import React from 'react';
 import {
-    Slider,
+    Slider, Icon, Tooltip, Whisper,
 } from 'rsuite';
 import {notes} from '../data/notes';
 import '../styles/screen.css';
 
-const Screen = ({arrayInfo, animationInfo, isAnimating, notesMode}) => {
+const pauseTip = (
+    <Tooltip>
+      Pause the current animation
+    </Tooltip>
+  );
+
+const playTip = (
+<Tooltip>
+    Resume animation
+</Tooltip>
+);
+
+const Screen = ({arrayInfo, animationInfo, isAnimating, notesMode, isPaused, pause, setPause, play}) => {
 
     let arrayHeight = (100 - ((arrayInfo.currentArray.length - 1 ) * .28)) / arrayInfo.currentArray.length;
     let displayArray = arrayInfo.currentArray.map(
@@ -63,7 +75,7 @@ const Screen = ({arrayInfo, animationInfo, isAnimating, notesMode}) => {
                         >
                             <div
                             style={{
-                                width: '50%',
+                                width: '47.5%',
                                 height: '100%',
                             }}
                             >
@@ -74,7 +86,10 @@ const Screen = ({arrayInfo, animationInfo, isAnimating, notesMode}) => {
                                     margin: 'auto',
                                 }}
                                 value={arrayInfo.currentArray.length}
-                                onChange={value => arrayInfo.setCurrentArray(arrayInfo.createNewArray(value))}
+                                onChange={value => {
+                                    arrayInfo.setCurrentArray(arrayInfo.createNewArray(value));
+                                    if(isPaused === 2 || isPaused === 1) setPause(0);
+                                }}
                                 min={5}
                                 max={120}
                                 tooltip={false}
@@ -84,7 +99,41 @@ const Screen = ({arrayInfo, animationInfo, isAnimating, notesMode}) => {
                             </div>
                             <div
                             style={{
-                                width: '50%',
+                                width: '5%',
+                                height: '100%',
+                            }}
+                            >
+                                <>
+                                {
+                                    isPaused === 2 &&
+                                    <div
+                                    onClick={play}
+                                    >
+                                    <Whisper trigger="hover" speaker={playTip} placement="top">
+                                    <Icon
+                                    icon="play"
+                                    size="4x"
+                                    style={{cursor: 'pointer'}}
+                                    /></Whisper></div>   
+                                }
+                                {
+                                    isPaused === 1 && 
+                                    <div
+                                    onClick={pause}
+                                    >
+                                    <Whisper trigger="hover" speaker={pauseTip} placement="top">   
+                                    <Icon
+                                    icon="pause"
+                                    size="4x"
+                                    style={{cursor: 'pointer'}}
+                                    /></Whisper></div>
+                                }
+
+                                </>
+                            </div>
+                            <div
+                            style={{
+                                width: '47.5%',
                                 height: '100%',
                             }}
                             >
