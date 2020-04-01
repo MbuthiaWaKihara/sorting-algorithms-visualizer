@@ -254,6 +254,11 @@ const App = () => {
                 pause={pauseAnimation}
                 setPause={setPause}
                 play={playAnimation}
+                currentAnimation={{
+                    animationPosition,
+                    animationInterval,
+                    setAnimationFrames,
+                }}
                 />
             </Content>
         </Container >

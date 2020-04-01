@@ -17,7 +17,7 @@ const playTip = (
 </Tooltip>
 );
 
-const Screen = ({arrayInfo, animationInfo, isAnimating, notesMode, isPaused, pause, setPause, play}) => {
+const Screen = ({arrayInfo, animationInfo, isAnimating, notesMode, isPaused, pause, setPause, play, currentAnimation}) => {
 
     let arrayHeight = (100 - ((arrayInfo.currentArray.length - 1 ) * .28)) / arrayInfo.currentArray.length;
     let displayArray = arrayInfo.currentArray.map(
@@ -87,8 +87,14 @@ const Screen = ({arrayInfo, animationInfo, isAnimating, notesMode, isPaused, pau
                                 }}
                                 value={arrayInfo.currentArray.length}
                                 onChange={value => {
+                                    //kill current animation
+                                    if(isPaused === 2 || isPaused === 1){
+                                        currentAnimation.animationPosition.current = 0;
+                                        currentAnimation.setAnimationFrames([]);
+                                        clearInterval(currentAnimation.animationInterval.current);
+                                        setPause(0);
+                                    }
                                     arrayInfo.setCurrentArray(arrayInfo.createNewArray(value));
-                                    if(isPaused === 2 || isPaused === 1) setPause(0);
                                 }}
                                 min={5}
                                 max={120}
