@@ -233,6 +233,7 @@ const App = () => {
             isAnimating={isAnimating}
             notesMode={notesMode}
             animationMilliseconds={animationMilliseconds}
+            pause={pause}
             />
         </Sidebar>
         <Container style={innerContainer}>
