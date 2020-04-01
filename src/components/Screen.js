@@ -13,7 +13,7 @@ const pauseTip = (
 
 const playTip = (
 <Tooltip>
-    Resume animation
+    Resume or change array size to end animation
 </Tooltip>
 );
 
