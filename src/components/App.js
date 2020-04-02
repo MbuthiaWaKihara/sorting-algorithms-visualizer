@@ -95,6 +95,9 @@ const App = () => {
     //state variable to hold all frames
     const [animationFrames, setAnimationFrames] = useState([]);
     //state variable that tracks for an animation pause
+    // 0 -> there's no active animation
+    // 1 -> there's an active animation, but it's not paused
+    // 2 -> there's an active animation, and it is paused
     const [pause, setPause] = useState(0);
 
 
